@@ -40,7 +40,3 @@ target_link_libraries(odagi_runtest ${catkin_LIBRARIES})
 
 add_executable(odagi_joystick src/odagi_joystick.cpp)
 target_link_libraries(odagi_joystick ${catkin_LIBRARIES} ypspur)
-
-
-
-
