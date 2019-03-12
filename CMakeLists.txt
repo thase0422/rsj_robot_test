@@ -1,0 +1,46 @@
+cmake_minimum_required(VERSION 2.8.3)
+project(rsj_robot_test)
+
+## Find catkin and any catkin packages
+find_package(catkin REQUIRED COMPONENTS
+  geometry_msgs
+  nav_msgs
+  roscpp
+  sensor_msgs
+  std_msgs
+  tf
+)
+find_package(Boost 1.53 REQUIRED system serialization)
+
+## Declare a catkin package
+catkin_package(DEPENDS
+  geometry_msgs
+  nav_msgs
+  roscpp
+  sensor_msgs
+  std_msgs
+  tf
+)
+
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
+if(COMPILER_SUPPORTS_CXX11)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+elseif(COMPILER_SUPPORTS_CXX0X)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+else()
+	message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+endif()
+
+include_directories(${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
+
+add_executable(odagi_runtest src/odagi_runtest.cpp)
+target_link_libraries(odagi_runtest ${catkin_LIBRARIES})
+
+add_executable(odagi_joystick src/odagi_joystick.cpp)
+target_link_libraries(odagi_joystick ${catkin_LIBRARIES} ypspur)
+
+
+
+
