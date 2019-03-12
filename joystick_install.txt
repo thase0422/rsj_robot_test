@@ -1,0 +1,9 @@
+ros_joy_nodeのインストール
+
+sudo apt-get install ros-kinetic-joy
+sudo apt-get install ros-kinetic-joystick-drivers
+
+rosrun joy joy_nodeで起動
+
+参考URL
+https://qiita.com/srs/items/9114bb3c27a148e0b855
